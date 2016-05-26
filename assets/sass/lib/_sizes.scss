@@ -1,0 +1,12 @@
+$sizes: (
+    tiny: 1rem,
+    small: 1.5rem,
+    med: 3rem,
+    large: 4.5rem,
+    grand: 6rem,
+    huge: 9rem
+);
+
+@each $size, $val in $sizes {
+    %#{$size} { width: $val; height: $val; }
+}

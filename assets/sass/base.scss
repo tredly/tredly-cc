@@ -1,0 +1,21 @@
+* {box-sizing: border-box; outline: none;}
+
+html {
+    font-size: 10px;
+}
+body {
+    background-color: col('grey-bg');
+    font-size: 1rem;
+}
+
+// Include library
+@import "lib/include";
+// Reset everything
+@import "compass/reset";
+// Load components
+@import "components/include";
+// Load pages
+@import "pages/include";
+
+
+

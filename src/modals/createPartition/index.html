@@ -1,0 +1,98 @@
+<div id="mod-partition-create" class="modal" ng-controller="ModalCreatePartitionCtrl as mvm">
+  <header>
+    <div ng-click="modalControl.close()" class="i i-close c-grey curp"></div>
+    <h3> <span class="i i-partition"></span><span>Create partition</span></h3>
+  </header>
+  <div class="content" ng-if="!mvm.saving && mvm.loaded">
+    <form>
+      <fieldset class="label-50">
+        <legend>Partition details</legend>
+        <div class="row">
+          <label for="lbl-host">Host</label>
+          <div class="field">
+            <select id="lbl-cgroup"
+              ng-model="mvm.partition.Host"
+              ng-options="item as item.name for item in mvm.hosts track by item.host">
+              <option style="display:none" value="">Select a Host</option>
+            </select>
+            <label for="lbl-cgroup">
+              <div class="i i-arrow-down c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-name">Partition Name</label>
+          <div class="field">
+            <input type="text" id="lbl-name" placeholder="Required" ng-model="mvm.partition.Partition"/>
+            <label for="lbl-name">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-partition">CPU</label>
+          <div class="field">
+            <input type="text" id="lbl-partition" placeholder="Optional" ng-model="mvm.partition.CPU" />
+            <label for="lbl-partition">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-partition">RAM</label>
+          <div class="field">
+            <input type="text" id="lbl-partition" placeholder="Optional" ng-model="mvm.partition.RAM" />
+            <label for="lbl-partition">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-partition">HDD</label>
+          <div class="field">
+            <input type="text" id="lbl-partition" placeholder="Optional" ng-model="mvm.partition.HDD" />
+            <label for="lbl-partition">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-ips">Public IPs</label>
+          <ul class="field list">
+            <li ng-repeat="publicIp in mvm.partition.ipv4Whitelist">
+              <input type="text" id="lbl-ips-{{$index}}" ng-model="publicIp.value"/>
+              <label for="lbl-ips-{{$index}}">
+                <div class="i i-delete c-grey curp" ng-click="mvm.partition.ipv4Whitelist.splice($index, 1)"></div>
+              </label>
+            </li>
+            <li>
+              <button class="c-grey" ng-click="mvm.partition.ipv4Whitelist.push({ value: '' })"><span class="i i-add"></span><span>Add an IP</span></button>
+            </li>
+          </ul>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="content" ng-if="mvm.saving && mvm.loaded">
+    <div class="console-output">
+      <div class="tac loading-spinner" ng-if="!mvm.consoleOutput && !mvm.consoleOutputEnd">
+        <img src="/images/loading.svg" width="60" height="60">
+      </div>
+      <span ng-bind-html="mvm.consoleOutput"></span><br>
+      <span ng-bind-html="mvm.consoleOutputEnd | terminal"></span>
+    </div>
+  </div>
+  <footer ng-if="!mvm.saving && mvm.loaded">
+    <div class="button-group">
+      <button class="c-main" ng-disabled="mvm.validate()" ng-click="mvm.save()">
+        <span class="i i-add"></span><span>Create</span>
+      </button>
+    </div>
+  </footer>
+  <div class="tac loading-spinner" ng-if="!mvm.loaded && mvm.loading">
+    <img src="/images/loading.svg" width="60" height="60">
+  </div>
+  <div class="tac loading-spinner" ng-if="!mvm.loaded && !mvm.loading">
+    <h4 class="c-red tac">Partition cannot be created. Please, check your hosts.</h4>
+  </div>
+</div>

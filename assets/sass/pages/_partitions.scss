@@ -1,0 +1,35 @@
+main section.partitions {
+    header {
+        .search {
+            right: 6.4rem;
+        }
+        a.f-right {
+            position: absolute;
+            right: 2rem;
+            top: 0;
+            width: 2.4rem;
+        }
+    }
+    .filter {
+        height: 6rem;
+        position: relative;
+        .i-refresh {
+            display: block;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+    }
+    .pills .por {
+        padding-top: 0.5rem;
+        height: 3rem;
+        .popout {
+            li {
+                width: 16rem;
+                a {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

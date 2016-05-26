@@ -1,0 +1,18 @@
+header.top {
+    position: relative;
+    $header-height: gs(2);
+    background-color: col('main');
+    background-image: url('/images/header.png');
+    height: $header-height;
+    line-height: $header-height;
+    z-index: 10;
+    text-align: center;
+
+    .logo img { height: 2rem; }
+    .command  { height: 1.4rem; margin: auto;}
+    .i-arrow-down { margin-left: 1rem; }
+
+    .popout {
+        margin-top: gs(-0.5);
+    }
+}

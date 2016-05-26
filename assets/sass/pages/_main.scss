@@ -1,0 +1,195 @@
+@import "../lib/include";
+main {
+    position: relative;
+    background-color: col('white');
+    min-height: calc(100vh - #{gs(2)});
+    @include box-shadow(0 0 1rem rgba(0,0,0,0.1));
+    padding-left: gs(2);
+
+
+    section > header {
+        height: gs(2);
+        line-height: gs(2);
+        padding: 0 gs(1);
+        border-bottom: 1px solid col('grey-lightest');
+
+        .search {
+            position: absolute;
+            right: 0;
+            top: 0;
+            input {
+                width: gs(4);
+
+                &:focus {
+                    width: gs(16);
+                }
+            }
+        }
+    }
+
+    section {
+        .content {
+            padding: gs(1) calc(100%/11);
+
+        }
+        .grid .well {
+            text-align: center;
+            padding: gs(0.5);
+            .title p {
+                margin: 0.75rem 0;
+            }
+
+            span {
+                margin: 0 0.5rem;
+            }
+
+            .figure {
+                margin-top: 2rem;
+                display: inline-block;
+                text-transform: uppercase;
+                width: 50%;
+                strong {
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+
+        &.containers {
+            padding: 0;
+        }
+
+        .filter {
+            border-bottom: 1px solid col('grey-lightest');
+            padding: gs(0.5) gs(1);
+        }
+    }
+}
+
+.dz-default {
+    display: none;
+}
+
+.file-uploader {
+    border: 1px dashed col('grey-lightest');
+    min-height: 10rem;
+    //margin-top: 2rem;
+}
+
+// -------------------------------------------------------------------- Modals
+
+#mod-container-edit, #mod-partition-edit {
+    min-width: 60rem;
+    min-height: 50rem;
+
+    input {
+        min-width: 20rem;
+    }
+
+    .question {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    .console-output {
+        padding-top: 2rem;
+        font-family: monospace;
+        max-width: 54rem;
+        overflow: auto;
+
+        span {
+            white-space: pre;
+        }
+    }
+
+    .loading-spinner {
+        margin-top: 2rem;
+    }
+}
+
+#mod-container-edit {
+    #lbl-server-path {
+        min-width: 45rem;
+        margin-bottom: 2rem;
+    }
+
+    .terminal-mode {
+        .console-output {
+            margin-bottom: 5rem;
+
+            .terminal-cmd {
+                color: col('green');
+                line-height: 3rem;
+                font-weight: 800;
+                display: inline-block;
+                padding-top: 1rem;
+            }
+        }
+
+        form {
+            position: absolute;
+            display: block;
+            bottom: 3rem;
+            width: calc(100% - 6rem);
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+}
+
+#mod-partition-create {
+    min-width: 50rem;
+    min-height: 40rem;
+
+    input, select {
+        min-width: 30rem;
+    }
+
+    .console-output {
+        padding-top: 2rem;
+        font-family: monospace;
+        max-width: 44rem;
+        overflow: auto;
+
+        span {
+            white-space: pre;
+        }
+    }
+
+    .loading-spinner {
+        margin-top: 2rem;
+    }
+}
+
+#mod-container-create {
+    min-width: 60rem;
+    min-height: 27rem;
+
+    input, select {
+        min-width: 42rem;
+    }
+
+    .console-output {
+        padding-top: 2rem;
+        font-family: monospace;
+        max-width: 54rem;
+        overflow: auto;
+
+        span {
+            white-space: pre;
+        }
+    }
+
+    .loading-spinner {
+        margin-top: 2rem;
+    }
+
+    .file-uploader {
+        p {
+            top: 4rem;
+            position: relative;
+        }
+    }
+}
+

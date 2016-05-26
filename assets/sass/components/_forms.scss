@@ -1,0 +1,135 @@
+// ---------------------------------- General form elements
+
+input, select {
+    @include appearance(none);
+    @include border-radius(0);
+    color: col('text');
+    height: gs(1);
+    border: $border-light;
+    border-width: 0 0 1px 0;
+    background: none;
+    @extend %fs-main;
+    &:focus {
+        border-color: col('grey-mid');
+    }
+}
+
+// Disabled
+input[readonly="readonly"],
+select:disabled {
+    border: none;
+    & + label { display: none; }
+}
+
+
+// ---------------------------------- Wrapper for icons
+.field {
+    position: relative;
+    // Icon
+    label {
+        .i { @extend %c-grey-mid-hover; }
+        position: absolute;
+        top: 1rem;
+        right: 0;
+    }
+
+    &.list {
+        li {
+            position: relative;
+            height: gs(1);
+            margin-bottom: 1rem;
+            label {
+                top: 0.5rem;
+            }
+            // line-height: 4rem;
+            // label {
+            //     line-height: 3rem;
+            // }
+        }
+    }
+}
+
+// ---------------------------------- Proper form
+form {
+    @extend %fs-main;
+    legend {
+        padding-top: gs(0.5);
+        line-height: gs(1);
+        font-style: italic;
+    }
+
+    .row {
+        position: relative;
+        display: table-row;
+
+        .field { display: table-cell; }
+
+        label:first-child, input, select {
+            line-height: gs(1);
+            display: inline-block;
+            width: 100%;
+        }
+
+        label:first-child {
+            @extend %fw-bold;
+            color: col('grey-mid');
+            margin: 0.5rem gs(1) 0.3rem 0;
+        }
+
+        // Saving/canceling/errors
+        .state {
+            line-height: 4rem;
+            margin-left: 2rem;
+            min-width: 10rem;
+            button + span { margin: 0 0.5rem; }
+
+            &.error { line-height: 1rem; }
+        }
+
+        select {
+            position: relative;
+            z-index: 1;
+            & + label {
+                z-index: 0;
+            }
+            &:disabled { color: col('text'); }
+        }
+    }
+}
+
+.meter {
+    $height: 3rem;
+    $bar-height: 0.8rem;
+    $value-padding: $bar-height + 0.2rem;
+
+    height: $height;
+    position: absolute;
+    top: 1rem;
+    width: 100%;
+
+    &:before, .bar {
+        position: absolute;
+        width: 100%;
+        height: $bar-height;
+        @include border-radius($bar-height/2);
+    }
+    &:before {
+        content: "";
+        background-color: col('grey');
+    }
+    .bar {
+        background-color: col('main');
+    }
+    .value {
+        @extend %fs-small;
+        color: col('grey');
+        font-style: italic;
+        padding-top: $value-padding;
+        text-align: center;
+    }
+}
+
+
+input.white {
+    color: col('white');
+}

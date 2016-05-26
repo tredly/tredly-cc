@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# PROVIDE: tredly-ui
+# BEFORE:  LOGIN FILESYSTEMS
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="tredlyui"
+rcvar="tredlyui_enable"
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
+
+command="/usr/local/bin/npm"
+
+tredlyui_directory="/usr/local/nodejs/www"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+restart_cmd="${name}_restart"
+status_cmd="${name}_status"
+log_cmd="${name}_log"
+extra_commands="status log"
+
+load_rc_config $name
+: ${tredlyui}_enable:=no}
+
+tredlyui_start()
+{
+    cd ${tredlyui_directory}
+    env NODE_ENV=production ${command} start
+}
+
+tredlyui_stop()
+{
+    cd ${tredlyui_directory}
+    ${command} stop
+}
+
+tredlyui_restart()
+{
+    cd ${tredlyui_directory}
+    ${command} restart
+}
+
+tredlyui_status()
+{
+    cd ${tredlyui_directory}
+    ${command} run list
+}
+tredlyui_log()
+{
+    cd ${tredlyui_directory}
+    ${command} run logs
+}
+
+load_rc_config $name
+run_rc_command "$1"

@@ -1,0 +1,61 @@
+<div id="mod-host-add" class="modal" ng-controller="ModalConnectCtrl as mvm">
+  <header>
+    <a ng-click="modalControl.close()" class="i i-close c-grey curp"></a>
+    <h3> <span class="i i-host"></span><span>Connect to {{modalControl.data.mainHost ? 'Main Host' : 'host'}}</span></h3>
+  </header>
+  <div class="content">
+    <form>
+      <fieldset class="label-50">
+        <legend>
+          Connection details
+          <span class="state error" ng-if="mvm.serverError">
+            <div class="i i-error"></div><span>{{mvm.serverError}}</span>
+          </span>
+        </legend>
+        <div class="row" ng-if="!modalControl.data.mainHost">
+          <label for="lbl-name">Name</label>
+          <div class="field">
+            <input type="text" id="lbl-name" placeholder="Required" ng-model="mvm.host.name"/>
+            <label for="lbl-name">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row" ng-if="!modalControl.data.mainHost">
+          <label for="lbl-host">Host</label>
+          <div class="field">
+            <input type="text" id="lbl-host" placeholder="Required" ng-model="mvm.host.host"/>
+            <label for="lbl-host">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-username">Username</label>
+          <div class="field">
+            <input type="text" id="lbl-username" placeholder="Required" ng-model="mvm.host.username"/>
+            <label for="lbl-username">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-password">Password</label>
+          <div class="field">
+            <input type="password" id="lbl-password" placeholder="Required" ng-model="mvm.host.password"/>
+            <label for="lbl-password">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <footer>
+    <div class="button-group">
+      <button class="c-main" ng-disabled="mvm.validate()" ng-click="mvm.save()">
+        <span class="i i-connect"></span><span>Connect</span>
+      </button>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,6 @@
+.well {
+    border: 1px solid col('grey-light');
+    background-color: col('grey-bg');
+    @include border-radius($border-radius);
+    padding: 0.5rem 1rem;
+}

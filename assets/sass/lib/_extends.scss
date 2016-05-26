@@ -1,0 +1,23 @@
+// -------------------------------------------------------------------- Buttons
+%button {
+    &:hover, &:focus, &:active {
+        background-color: col('bg-hover');
+    }
+    &:focus, &:active {
+        @include box-shadow(inset 0 0 1rem rgba(0,0,0,0.1));
+    }
+    &.active {
+        background-color: col('bg-active');
+        @include box-shadow(none);
+    }
+}
+
+
+// -------------------------------------------------------------------- Misc
+%cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

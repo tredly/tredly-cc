@@ -1,0 +1,37 @@
+<header class="top" ng-click="vm.showFilter = false;">
+  <div class="wrapper">
+    <a ui-sref="app.hosts" class="logo f-left">
+      <img src="/images/logo.svg" alt="Tredly"/>
+    </a>
+    <img src="/images/command.svg" class="command"/>
+    <div class="user f-right por" ng-if="vm.profile"
+      ng-click="vm.showFilter = !vm.showFilter; $event.stopPropagation();">
+      <span class="c-white fw-bold curp">{{vm.profile.name}}</span><span class="i i-arrow-down c-white curp"></span>
+      <ul class="popout top-right" ng-if="vm.showFilter">
+        <li ng-repeat="action in vm.profile.actions">
+          <a ng-click="action.handler();">{{::action.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<main class="wrapper partitions" ng-click="vm.showFilter = false;">
+  <aside class="sidebar-tabs">
+    <nav>
+        <a ui-sref="app.hosts" ui-sref-active="active">
+          <div class="i c-grey med i-host"></div>
+          <div class="popout left">Hosts</div>
+        </a>
+        <a ui-sref="app.partitions" ui-sref-active="active">
+          <div class="i c-grey med i-partition"></div>
+          <div class="popout left">Partitions</div>
+        </a>
+        <a ui-sref="app.containers" ui-sref-active="active">
+          <div class="i c-grey med i-container"></div>
+          <div class="popout left">Containers</div>
+        </a>
+    </nav>
+  </aside>
+  <div ui-view></div>
+</main>
+<tredly-modal></tredly-modal>

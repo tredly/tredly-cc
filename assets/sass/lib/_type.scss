@@ -1,0 +1,18 @@
+// -------------------------------------------------------------------- Variables
+$f-base: 10px;
+$f-line: 1.5em;
+$f-stack: "open sans", sans-serif;
+
+// -------------------------------------------------------------------- Sizes
+%fs-tiny  { font-size: 1rem;   }
+%fs-small { font-size: 1.2rem; }
+%fs-main  { font-size: 1.4rem; }
+%fs-large { font-size: 1.8rem; }
+%fs-grand { font-size: 2.4rem; }
+%fs-huge  { font-size: 3.6rem; }
+
+// -------------------------------------------------------------------- Sizes
+%fw-thin  { font-weight: 200; }
+%fw-med   { font-weight: 500; }
+%fw-bold  { font-weight: 600; }
+%fw-black { font-weight: 700; }

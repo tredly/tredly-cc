@@ -1,0 +1,19 @@
+@import "../lib/include";
+.empty-state {
+    margin-top: gs(2);
+
+    .i.huge + h3 {
+        margin: gs(0.5) 0;
+    }
+    .i.huge + h3 + p {
+        height: 7rem;
+        overflow: hidden;
+    }
+    button, small {
+        display: inline-block;
+        margin-top: gs(1);
+    }
+    .disabled {
+        &, .i { color: col('grey'); }
+    }
+}

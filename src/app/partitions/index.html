@@ -1,0 +1,75 @@
+<section class="content partitions" ng-show="vm.loaded" ng-click="vm.showFilter = false;">
+  <header>
+    <h2 class="dib c-main vam">Partitions</h2>
+    <div class="search f-right">
+      <div class="i i-search c-grey-lightest med"></div>
+      <input type="text" placeholder="Search..." ng-model="vm.query"/>
+    </div>
+    <a class="f-right" ng-if="vm.hosts.length" tredly-modal-open="/modals/createPartition/index.html">
+      <div class="i i-add fs-grand"></div>
+    </a>
+    <a class="f-right" ng-if="!vm.hosts.length">
+      <div class="i i-add c-grey fs-grand"></div>
+    </a>
+  </header>
+  <div class="filter" ng-if="vm.hosts.length">
+    <ul class="pills">
+      <li class="well por" ng-if="vm.host">
+        <span class="curp" ng-click="vm.showFilter = !vm.showFilter; $event.stopPropagation();">
+          <span class="i i-host"></span><span>{{vm.host.name}}</span>
+        </span>
+        <ul class="popout top" ng-if="vm.showFilter">
+          <li ng-repeat="host in vm.hosts">
+            <a ng-click="vm.filter(host.host, true);">{{::host.name}}</a>
+          </li>
+        </ul>
+        <button class="c-grey" ng-click="vm.filter(vm.host.host, false);">
+          <div class="i i-close"></div>
+        </button>
+      </li>
+      <li class="por" ng-if="!vm.host && vm.hosts.length">
+        <button ng-click="vm.showFilter = !vm.showFilter; $event.stopPropagation();" class="c-grey">
+          <span class="i i-filter"></span><span>Filter By Host</span>
+        </button>
+        <ul class="popout top" ng-if="vm.showFilter">
+          <li ng-repeat="host in vm.hosts">
+            <a ng-click="vm.filter(host.host, true);">{{::host.name}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <a class="i i-refresh fs-grand" ng-click="vm.refresh();"></a>
+  </div>
+  <div class="content" ng-if="vm.partitions.length">
+    <div class="grid">
+      <div class="well c-lg-4" ng-repeat="partition in vm.partitions | where: { query: vm.query, fields: ['Partition', 'host.name'], scope:  vm, stats: 'partitionsList' } | orderBy: '+Partition'">
+        <div class="title">
+          <a tredly-modal-open="/modals/partition/index.html" tredly-modal-data="{partition: partition}">
+            <h4 class="dib">{{::partition.Partition}}</h4><br>
+          </a>
+          <span class="c-grey">on</span><br>
+          <a tredly-modal-open="/modals/disconnect/index.html" tredly-modal-data="{host: partition.host}" class="c-green">
+            {{::partition.host.name}}
+          </a>
+        </div>
+        <div class="figure"><strong class="db">{{::partition.CPU}}</strong><small class="c-grey">CPU</small></div>
+        <div class="figure"><strong class="db">{{::partition.RAM}}</strong><small class="c-grey">RAM</small></div>
+        <div class="figure"><strong class="db">{{::partition['HDD(Used/Total)']}}</strong><small class="c-grey">HDD(Used/Total)</small></div>
+        <div class="figure"><strong class="db"> <a ui-sref="app.containers({ filter: true, host: partition.host.host, partition: partition.Partition })">{{::partition.Containers}}</a></strong><small class="c-grey">containers</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="tac list-loading" ng-if="!vm.loaded" >
+  <img src="/images/tank-build.svg" width="200" height="200">
+</div>
+<div class="tac list-loading empty-state"
+  ng-if="vm.loaded && !vm.partitions.length" ng-class="{disabled: !vm.hosts.length}">
+  <div class="i i-partition c-main huge"></div>
+  <h3>Partition</h3>
+  <p>A partition is a section in a host with allocated resources where the containers reside in.</p>
+  <small ng-if="!vm.hosts.length"><em>Connect to host before creating a partition.</em></small>
+  <button ng-if="vm.hosts.length" tredly-modal-open="/modals/createPartition/index.html" class="super c-main fs-small">
+    <span class="i i-add"></span><span>Create partition</span>
+  </button>
+</div>

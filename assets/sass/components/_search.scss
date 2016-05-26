@@ -1,0 +1,24 @@
+@import "compass/css3/user-interface";
+.search {
+    .i-search {
+        margin-right: 1rem;
+    }
+    input {
+        width: calc(100% - #{gs(1)});
+        @extend %fs-main;
+        @extend %fw-bold;
+        color: col('text');
+        border: none;
+        font-family: $f-stack;
+        text-overflow: ellipsis;
+        @include transition(width $ani-time);
+        @include input-placeholder {
+            color: col('grey');
+        }
+        &:hover {
+            @include input-placeholder {
+                color: col('grey');
+            }
+        }
+    }
+}

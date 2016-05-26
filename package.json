@@ -1,0 +1,40 @@
+{
+  "name": "tredly-ui",
+  "version": "0.1.0",
+  "description": "Tredly Command Center",
+  "main": "server.js",
+  "scripts": {
+    "start": "forever start --minUptime 0 --spinSleepTime 1000 -a -c 'node --harmony' --uid tredly-ui server.js",
+    "list": "forever list",
+    "stop": "forever stop tredly-ui",
+    "restart": "forever restart tredly-ui",
+    "logs": "forever logs server.js",
+    "build": "gulp"
+  },
+  "keywords": [
+    "containers",
+    "jails"
+  ],
+  "author": "Vuid Pty Ltd",
+  "license": "MIT",
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-busboy": "^1.3.1",
+    "http-proxy": "^1.13.2",
+    "koa": "^1.2.0",
+    "koa-cors": "^0.0.16",
+    "koa-sendfile": "^2.0.0",
+    "koa-static": "^2.0.0",
+    "lodash": "^4.11.1",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "forever": "^0.15.1",
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-iconfont": "^8.0.0",
+    "gulp-iconfont-css": "^2.1.0",
+    "gulp-ng-html2js": "^0.2.2"
+  }
+}

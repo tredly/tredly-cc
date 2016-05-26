@@ -1,0 +1,24 @@
+.wrapper {
+    max-width: gs(32);
+    margin: auto;
+}
+
+.db      { display: block; }
+.dib     { display: inline-block; }
+.hide    { display: none; }
+.f-left  { float: left; }
+.f-right { float: right; }
+.cover   { @extend %cover; }
+.por     { position: relative; }
+.curp    { cursor: pointer; }
+
+// ---------------------------------- Text
+.tal { text-align: left; }
+.tac { text-align: center; }
+.tar { text-align: right; }
+.vam { vertical-align: middle; }
+
+// ---------------------------------- Sizes
+@each $size, $val in $sizes {
+    .#{$size} { width: $val; height: $val; }
+}

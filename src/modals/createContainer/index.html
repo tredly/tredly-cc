@@ -1,0 +1,96 @@
+<div id="mod-container-create" class="modal" ng-controller="ModalCreateContainerCtrl as mvm">
+  <header>
+    <div ng-click="modalControl.close()" class="i i-close c-grey curp"></div>
+    <h3> <span class="i i-container"></span><span>Create container</span></h3>
+  </header>
+  <div class="content" ng-if="!mvm.saving && mvm.loaded">
+    <form>
+      <fieldset class="label-50">
+        <legend>Container details</legend>
+        <div class="row">
+          <label for="lbl-host">Host</label>
+          <div class="field">
+            <select id="lbl-cgroup"
+              ng-model="mvm.container.Host"
+              ng-options="item as item.name for item in mvm.hosts track by item.host">
+              <option style="display:none" value="">Select a Host</option>
+            </select>
+            <label for="lbl-cgroup">
+              <div class="i i-arrow-down c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-host">Partition</label>
+          <div class="field">
+            <select id="lbl-cgroup"
+              ng-model="mvm.container.Partition"
+              ng-options="item as item.Partition for item in mvm.container.Host.partitions track by item.Partition">
+              <option style="display:none" value="">Select a Partition</option>
+            </select>
+            <label for="lbl-cgroup">
+              <div class="i i-arrow-down c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-host">Mode</label>
+          <div class="field">
+            <select id="lbl-cgroup"
+              ng-change="mvm.changeMode()"
+              ng-model="mvm.container.mode"
+              ng-options="item as item.title for item in mvm.modes track by item.name">
+            </select>
+            <label for="lbl-cgroup">
+              <div class="i i-arrow-down c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-partition">Server Path</label>
+          <div class="field">
+            <input type="text" id="lbl-partition" placeholder="Required" ng-model="mvm.container.path" />
+            <label for="lbl-partition">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row" ng-if="mvm.container.mode.name !== 'create'">
+          <label for="lbl-partition">Package</label>
+          <div class="field">
+            <div class="tac curp file-uploader">
+              <div style="pointer-events: none;" class="file-uploader-content">
+                <p class="c-orange" ng-if="!mvm.file">
+                  {{mvm.fileError || 'Drop file here or click to select file ( *.tar.gz file only)'}}
+                </p>
+                <p class="c-green" ng-if="mvm.file">{{mvm.file.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="content" ng-if="mvm.saving && mvm.loaded">
+    <div class="console-output">
+      <div class="tac loading-spinner" ng-if="!mvm.consoleOutput && !mvm.consoleOutputEnd">
+        <img src="/images/loading.svg" width="60" height="60">
+      </div>
+      <span ng-bind-html="mvm.consoleOutput"></span><br>
+      <span ng-bind-html="mvm.consoleOutputEnd | terminal"></span>
+    </div>
+  </div>
+  <footer ng-if="!mvm.saving && mvm.loaded">
+    <div class="button-group">
+      <button class="c-main" ng-disabled="mvm.validate()" ng-click="mvm.save()">
+        <span class="i i-add"></span><span>Create</span>
+      </button>
+    </div>
+  </footer>
+  <div class="tac loading-spinner" ng-if="!mvm.loaded && mvm.loading">
+    <img src="/images/loading.svg" width="60" height="60">
+  </div>
+  <div class="tac loading-spinner" ng-if="!mvm.loaded && !mvm.loading">
+    <h4 class="c-red tac">Container cannot be created. Please, check your partitions.</h4>
+  </div>
+</div>

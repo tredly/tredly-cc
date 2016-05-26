@@ -1,0 +1,162 @@
+<div id="mod-container-edit" class="modal" ng-controller="ModalContainerCtrl as mvm">
+  <header>
+    <div ng-click="modalControl.close()" class="i i-close c-grey curp"></div>
+    <h3> <span class="i i-container"></span><span>{{mvm.container.ContainerName}}</span></h3>
+    <div class="button-group">
+      <button class="c-orange" ng-disabled="mvm.validate('replace')" ng-click="mvm.replace()"><span class="i i-refresh"></span><span>Replace</span></button>
+      <button class="c-red" ng-disabled="mvm.validate('destroy')" ng-click="mvm.destroy()"><span class="i i-delete"></span><span>Destroy</span></button>
+      <button class="c-purple" ng-disabled="mvm.validate('console')" ng-click="mvm.terminal()"><span class="i i-console"></span><span>Console</span></button>
+    </div>
+  </header>
+  <div class="content" ng-if="mvm.mode === 'view'">
+    <form>
+      <fieldset class="label-50">
+        <legend>Container details</legend>
+        <div class="row">
+          <label for="lbl-name">Container Name</label>
+          <div class="field">
+            <input type="text" id="lbl-name" placeholder="Required" ng-model="mvm.container.ContainerName" ng-readonly="true"/>
+            <label for="lbl-name">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-host">Host Name</label>
+          <div class="field">
+            <input type="text" id="lbl-host" placeholder="Required" ng-model="mvm.container.HostName" ng-readonly="true"/>
+            <label for="lbl-host">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-partition">Partition</label>
+          <div class="field">
+            <input type="text" id="lbl-partition" placeholder="Required" ng-model="mvm.container.Partition" ng-readonly="true"/>
+            <label for="lbl-partition">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-group">Container Group</label>
+          <div class="field">
+            <input type="text" id="lbl-group" placeholder="Required" ng-model="mvm.container.ContainerGroup" ng-readonly="true"/>
+            <label for="lbl-group">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-state">State</label>
+          <div class="field">
+            <input state="text" id="lbl-state" class="fw-bold" placeholder="Required" ng-model="mvm.container.State" ng-readonly="true" ng-class="{'c-red': mvm.container.State === 'down', 'c-green': mvm.container.State === 'up', 'c-grey': mvm.container.State !== 'up' && mvm.container.State !== 'down'}"/>
+            <label for="lbl-state">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-created">Uptime</label>
+          <div class="field">
+            <input type="text" id="lbl-created" placeholder="Required" ng-model="mvm.container.UptimeStr" ng-readonly="true" />
+            <label for="lbl-created">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-uuid">UUID</label>
+          <div class="field">
+            <input type="text" id="lbl-uuid" placeholder="Required" ng-model="mvm.container.UUID" ng-readonly="true"/>
+            <label for="lbl-uuid">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-ip4">IP4</label>
+          <div class="field">
+            <input type="text" id="lbl-ip4" placeholder="Required" ng-model="mvm.container.IP4" ng-readonly="true"/>
+            <label for="lbl-ip4">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-created">Created</label>
+          <div class="field">
+            <input type="text" id="lbl-created" placeholder="Required" ng-model="mvm.container.CreatedStr" ng-readonly="true" />
+            <label for="lbl-created">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="content" ng-if="mvm.mode === 'replace'">
+    <div ng-if="!mvm.confirmed">
+      <form>
+        <fieldset class="label-50">
+          <legend>Please, specify additional parameters</legend>
+          <div class="row">
+            <label for="lbl-server-path">Server Path</label>
+            <div class="field">
+              <input type="text" id="lbl-server-path" placeholder="Required" ng-model="mvm.serverPath"/>
+              <label for="lbl-server-path">
+                <div class="i i-edit c-grey"></div>
+              </label>
+            </div>
+          </div>
+          <div class="state tac">
+            <button class="c-orange" ng-disabled="!mvm.serverPath" ng-click="mvm.replace(true)">Replace </button>
+            <span class="c-grey-light"> or</span>
+            <button class="c-grey" ng-click="mvm.cancel()">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div ng-if="mvm.confirmed" class="console-output">
+      <div class="tac loading-spinner" ng-if="!mvm.consoleOutput && !mvm.consoleOutputEnd">
+        <img src="/images/loading.svg" width="60" height="60">
+      </div>
+      <span ng-bind-html="mvm.consoleOutput"></span><br>
+      <span ng-bind-html="mvm.consoleOutputEnd | terminal"></span>
+    </div>
+  </div>
+  <div class="content" ng-if="mvm.mode === 'destroy'">
+    <div ng-if="!mvm.confirmed">
+      <h4 class="question tac">Are you sure you want to destroy this container?</h4>
+      <div class="state tac">
+        <button class="c-red" ng-click="mvm.destroy(true)">Yes </button>
+        <span class="c-grey-light"> or</span>
+        <button class="c-grey" ng-click="mvm.cancel()">No</button>
+      </div>
+    </div>
+    <div ng-if="mvm.confirmed" class="console-output">
+      <div class="tac loading-spinner" ng-if="!mvm.consoleOutput && !mvm.consoleOutputEnd">
+        <img src="/images/loading.svg" width="60" height="60">
+      </div>
+      <span ng-bind-html="mvm.consoleOutput"></span><br>
+      <span ng-bind-html="mvm.consoleOutputEnd | terminal"></span>
+    </div>
+  </div>
+  <div class="content terminal-mode" ng-if="mvm.mode === 'console'">
+    <div class="console-output">
+      <span ng-bind-html="mvm.consoleOutput"></span><br>
+      <span ng-bind-html="mvm.consoleOutputEnd | terminal"></span>
+    </div>
+    <form ng-submit="mvm.runCommand()">
+      <fieldset class="label-50">
+        <div class="field">
+          <input type="text" placeholder="Please, enter a command" ng-model="mvm.terminalData.command" ng-readonly="mvm.saving" ng-keydown="mvm.searchCommand($event)" ng-change="mvm.resetCommand()"/>
+          <label class="curp" ng-disabled="mvm.saving" ng-click="mvm.runCommand()">
+            <div class="i i-open c-grey"></div>
+          </label>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

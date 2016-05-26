@@ -1,0 +1,8 @@
+@each $color, $val in $colors {
+    .c-#{$color} {
+        color: #{$val};
+        &.hover {
+            @extend %c-#{$color}-hover;
+        }
+    }
+}

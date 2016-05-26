@@ -1,0 +1,44 @@
+button {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    @extend %fw-bold;
+    cursor: pointer;
+
+    @each $color, $val in $colors {
+        &.c-#{$color} {
+            @extend %c-#{$color}-hover;
+        }
+    }
+
+    span { vertical-align: middle; }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default !important;
+        background-color: transparent !important;
+        color: col('grey-mid') !important;
+        span {
+            color: col('grey-mid') !important;
+        }
+    }
+
+    &.super {
+        border: $border-light;
+        padding: 1.5rem;
+        @include border-radius($border-radius);
+    }
+}
+
+.button-group {
+    line-height: gs(1);
+    button, .button {
+        margin-right: gs(1);
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+}

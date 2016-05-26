@@ -1,0 +1,33 @@
+$colors: (
+    'black':         #4d515c,
+    'grey-dark':     #6f7582,
+    'grey-mid':      #c0c1c2,
+    'grey-light':    #dddfe0,
+    'grey-lightest': #ebeced,
+    'white-off':     #f6f8fb,
+    'white':         #ffffff,
+    'teal':          #35aca8,
+    'green':         #35b05e,
+    'army-green':    #6b9d34,
+    'red':           #d45858,
+    'orange':        #e8b127,
+    'purple':        #914cc4,
+    'grey-bg':       #f6f8fb,
+    'bg-active':     rgba(0,0,0,0.025),
+    'bg-hover':      rgba(0,0,0,0.015)
+);
+
+$colors: map-set($colors, 'grey', col('grey-mid'));
+$colors: map-set($colors, 'text', col('grey-dark'));
+$colors: map-set($colors, 'main', col('army-green'));
+
+@each $color, $val in $colors {
+    %c-#{$color}-hover {
+        color: #{$val};
+        &:hover,&:focus { color: #{lighten($val,8%)}; }
+        &:active { color: #{ darken($val,8%)}; }
+    }
+}
+
+$border-light: 1px solid col('grey-lightest');
+$border-white: 1px solid col('white-off');

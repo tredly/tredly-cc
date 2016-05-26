@@ -1,0 +1,40 @@
+<section class="hosts" ng-show="vm.loaded">
+  <header>
+    <h2 class="dib c-main vam">Hosts</h2>
+    <div class="search f-right">
+      <div class="i i-search c-grey-lightest med"></div>
+      <input type="text" placeholder="Search..." ng-model="vm.query"/>
+    </div>
+    <a class="f-right" tredly-modal-open="/modals/connect/index.html">
+      <div class="i i-add fs-grand"></div>
+    </a>
+  </header>
+  <div class="content" ng-if="vm.hosts.length">
+    <div class="grid">
+      <div class="well c-lg-4" ng-repeat="host in vm.hosts | where: { query: vm.query, fields: ['name', 'host'], scope:  vm, stats: 'hostsList' } | orderBy: '+name'">
+        <div class="title">
+          <h4>
+            <span class="i i-traffic" ng-class="{'c-grey': host.active === null, 'c-green': host.active === true, 'c-red': host.active === false }"></span>
+            <a tredly-modal-open="/modals/disconnect/index.html" tredly-modal-data="{host: host}">{{::host.name}}</a>
+          </h4>
+          <p>{{::host.host || '~.~.~.~'}}</p>
+          <p class="c-grey">{{host.uptimeInfo}}</p>
+        </div>
+        <div class="figure"><strong class="db"><a ui-sref="app.partitions({ filter: true, host: host.host })">{{host.partitionCount}}</a></strong><small class="c-grey">partitions</small></div>
+        <div class="figure"><strong class="db"> <a ui-sref="app.containers({ filter: true, host: host.host })">{{host.containerCount}}</a></strong><small class="c-grey">containers</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="tac list-loading" ng-if="!vm.loaded" >
+  <img src="/images/tank-build.svg" width="200" height="200">
+</div>
+<div class="tac list-loading empty-state"
+  ng-if="vm.loaded && !vm.hosts.length">
+  <div class="i i-host c-main huge"></div>
+  <h3>Tredly Host</h3>
+  <p>Create connection to a new Tredly server for administrating it’s containers and partitions.</p>
+  <button tredly-modal-open="/modals/connect/index.html" class="super c-main fs-small">
+    <span class="i i-add"></span><span>Connect to host</span>
+  </button>
+</div>

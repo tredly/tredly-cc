@@ -1,0 +1,49 @@
+body.modalOpen {
+    overflow: hidden;
+}
+.modalContainer {
+    @extend %cover;
+    position: fixed;
+    overflow: auto;
+    background-color: rgba(col('main'), 0.3);
+    z-index: 100;
+}
+.modal {
+    z-index: 100;
+    position: absolute;
+    left: 50%;
+    top: gs(1.5);
+    margin-bottom: gs(1);
+    @include transform(translate(-50%, 0%));
+    padding: gs(1);
+    background-color: col('white');
+    @include border-radius($border-radius);
+    @include box-shadow(0px 7px 1rem rgba(col('main'), 0.5));
+
+
+
+    header {
+        margin-left: gs(-1);
+        margin-right: gs(-1);
+        margin-top: gs(-0.5);
+        padding: 0 gs(1);
+        padding-bottom: gs(0.5);
+        border-bottom: $border-light;
+        .i-close {
+            position: absolute;
+            right: gs(0.5);
+            top: gs(0.5);
+        }
+        .button-group {
+            margin-top: 1rem;
+        }
+    }
+
+    footer {
+        margin: gs(-1);
+        margin-top: gs(1);
+        padding: 0 gs(0.5) 0.5rem;
+        border-top: $border-light;
+        text-align: right;
+    }
+}

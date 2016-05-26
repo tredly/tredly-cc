@@ -1,0 +1,62 @@
+<div id="mod-host-edit" class="modal" ng-controller="ModalDisconnectCtrl as mvm">
+  <header>
+    <div ng-click="modalControl.close()" class="i i-close c-grey curp"></div>
+    <h3><span class="i i-host"></span><span>{{mvm.host.name}}</span></h3>
+    <div class="button-group">
+      <button class="c-red" ng-click="mvm.disconnect()"><span class="i i-delete"></span><span>Disconnect</span></button>
+    </div>
+  </header>
+  <div class="content">
+    <form>
+      <fieldset class="label-50">
+        <legend>
+          Connection details
+          <span class="state error" ng-if="mvm.serverError">
+            <div class="i i-error"></div><span>{{mvm.serverError}}</span>
+          </span>
+        </legend>
+        <div class="row">
+          <label for="lbl-name">Name</label>
+          <div class="field">
+            <input type="text" id="lbl-name" placeholder="Required" ng-model="mvm.host.name"/>
+            <label for="lbl-name">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+          <div class="state">
+            <button class="c-main" ng-disabled="mvm.validate()" ng-click="mvm.save()">Save </button>
+            <span class="c-grey-light">or</span>
+            <button class="c-grey" ng-click="modalControl.close()">Cancel</button>
+          </div>
+        </div>
+        <div class="row" ng-if="mvm.host.host">
+          <label for="lbl-host">Host</label>
+          <div class="field">
+            <input type="text" id="lbl-host" placeholder="Required" ng-model="mvm.host.host" ng-readonly="true"/>
+            <label for="lbl-host">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-username">Username</label>
+          <div class="field">
+            <input type="text" id="lbl-username" placeholder="{{mvm.host.password ? 'Required' : 'Optional'}}" ng-model="mvm.host.username"/>
+            <label for="lbl-username">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lbl-password">Password</label>
+          <div class="field">
+            <input type="password" id="lbl-password" placeholder="{{mvm.host.username ? 'Required' : 'Optional'}}" ng-model="mvm.host.password"/>
+            <label for="lbl-password">
+              <div class="i i-edit c-grey"></div>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

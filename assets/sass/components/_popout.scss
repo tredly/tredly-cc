@@ -1,0 +1,189 @@
+.popout {
+    $height: 1rem;
+    $width: 1.5rem;
+    position: absolute;
+    background-color: col('black');
+    @include border-radius($border-radius);
+    color: col('white');
+    padding: 0.75rem;
+    line-height: gs(0.5);
+    z-index: 50;
+
+
+
+
+    &:after {
+        content: "";
+        position: absolute;
+        border-color: transparent transparent col('black') transparent;
+        border-width: 0 $width/2 $height $width/2;
+        border-style: solid;
+    }
+
+    &.left {
+        top: 50%;
+        left: calc(100% + 0.5rem);
+        @include transform(translate(0,-50%));
+        &:after {
+            @extend %pop-left, %pop-v-center;
+        }
+    }
+    &.right {
+        top: 50%;
+        right: calc(100% + 0.5rem);
+        @include transform(translate(0,-50%));
+        &:after {
+            @extend %pop-right, %pop-v-center;
+        }
+    }
+    &.top {
+        left: 50%;
+        top: calc(100% + 0.5rem);
+        @include transform(translate(-50%,0));
+        &:after {
+            @extend %pop-top, %pop-h-center;
+        }
+    }
+    &.bottom {
+        left: 50%;
+        bottom: calc(100% + 0.5rem);
+        @include transform(translate(-50%,0));
+        &:after {
+            @extend %pop-bottom, %pop-h-center;
+        }
+    }
+
+    &.left-bottom {
+        @include border-bottom-left-radius(0);
+        left:calc(100% + 0.5rem);
+        bottom: 0;
+        &:after { @extend %pop-left, %pop-bottom-corner;  }
+    }
+    &.left-top {
+        @include border-top-left-radius(0);
+        left:calc(100% + 0.5rem);
+        top: 0;
+        &:after { @extend %pop-left, %pop-top-corner;     }
+    }
+    &.right-bottom {
+        @include border-bottom-right-radius(0);
+        right: calc(100% + 0.5rem);
+        bottom: 0;
+        &:after { @extend %pop-right, %pop-bottom-corner; }
+    }
+    &.right-top {
+        @include border-top-right-radius(0);
+        right: calc(100% + 0.5rem);
+        top: 0;
+        &:after { @extend %pop-right, %pop-top-corner;    }
+    }
+
+    &.bottom-left {
+        @include border-bottom-left-radius(0);
+        bottom: calc(100% + 0.5rem);
+        left:0;
+        &:after { @extend %pop-left-corner, %pop-bottom;  }
+    }
+    &.top-left {
+        @include border-top-left-radius(0);
+        top: calc(100% + 0.5rem);
+        left:0;
+        &:after { @extend %pop-left-corner, %pop-top;     }
+    }
+    &.bottom-right {
+        @include border-bottom-right-radius(0);
+        bottom: calc(100% + 0.5rem);
+        right: 0;
+        &:after { @extend %pop-right-corner, %pop-bottom; }
+    }
+    &.top-right {
+        @include border-top-right-radius(0);
+        top: calc(100% + 0.5rem);
+        right: 0;
+        &:after { @extend %pop-right-corner, %pop-top;    }
+    }
+}
+
+
+%pop-left {
+    left: -1.2rem;
+    @include transform(rotate(-90deg));
+}
+%pop-left-corner {
+    left: 0;
+}
+%pop-right {
+    right: -1.2rem;
+    @include transform(rotate(90deg));
+}
+%pop-right-corner {
+    right: 0;
+}
+%pop-top {
+    top: -1rem;
+    @include transform(rotate(0deg));
+}
+%pop-top-corner {
+    top: 2px;
+}
+%pop-bottom {
+    bottom: -1rem;
+    @include transform(rotate(180deg));
+}
+%pop-bottom-corner {
+    bottom: 2px;
+}
+%pop-v-center {
+    top: 50%; margin-top: -0.5rem;
+}
+%pop-h-center {
+    left: 50%; margin-left: -0.7rem;
+}
+
+
+
+
+ul.popout {
+    padding: 0;
+    li {
+        display: inline-block;
+        width: 100%;
+        line-height: 1rem;
+        overflow: hidden;
+        &:first-child {
+            @include border-top-right-radius($border-radius);
+            @include border-top-left-radius($border-radius);
+        }
+        &:last-child {
+            @include border-bottom-right-radius($border-radius);
+            @include border-bottom-left-radius($border-radius);
+        }
+    }
+    a {
+        display: inline-block;
+        width: 100%;
+        padding: 1rem 2rem;
+        text-align: left;
+        color: col('white');
+        &:hover {
+            background-color: lighten(col('black'),8%);
+        }
+    }
+
+    &.results {
+        input {
+            width: 100%;
+            min-width: gs(5);
+            text-indent: 0.5rem;
+        }
+        li {
+            height: gs(1);
+            line-height: gs(1);
+            padding: 0 0.5rem;
+
+            &:first-child {
+                padding: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+@function gs($value) {
+    @return $grid-size * $value;
+}
+
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+@function col($name) {
+    @return map-get($colors, $name);
+}

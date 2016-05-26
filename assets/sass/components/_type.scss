@@ -1,0 +1,63 @@
+html, body {
+    font-size: $f-base;
+    font-family: $f-stack;
+    line-height: $f-line;
+    color: col('grey-dark');
+    cursor: auto;
+    font-weight: 400;
+}
+
+// ---------------------------------- Sizes
+.fs-tiny  { @extend %fs-tiny; }
+.fs-small { @extend %fs-small; }
+.fs-main  { @extend %fs-main; }
+.fs-large { @extend %fs-large; }
+.fs-grand { @extend %fs-grand; }
+.fs-huge  { @extend %fs-huge; }
+
+div,p,a { @extend %fs-main; }
+h1{ @extend %fs-huge; }
+h2, h2 * { @extend %fs-grand; line-height: 3.6rem; }
+h3{ @extend %fs-large; }
+h4{ @extend %fs-main; }
+h5{ @extend %fs-small; }
+h6{ @extend %fs-tiny; }
+
+small { @extend %fs-small; }
+p { line-height: 2.1rem; }
+
+// ---------------------------------- Weights & styles
+
+.fw-thin  { @extend %fw-thin; }
+.fw-med   { @extend %fw-med; }
+.fw-bold  { @extend %fw-bold; }
+.fw-black { @extend %fw-black; }
+
+h1,h2,h3,h4,h5,h6,strong {
+    @extend %fw-bold;
+}
+em {
+    font-style: italic;
+}
+
+
+// ---------------------------------- Families
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+// ---------------------------------- Colors
+h1,a { color: col('main'); }
+.error {
+    color: col('red');
+    @extend %fs-small;
+}
+
+
+// ---------------------------------- Misc
+a {
+    text-decoration: none;
+    @extend %c-main-hover;
+    cursor: pointer;
+}

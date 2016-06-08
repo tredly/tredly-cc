@@ -7,9 +7,9 @@ This is a software package to provide UI to Tredly Host. You can find out more i
 
 ## Installation
 
-Requires Tredly 0.10.5 <https://github.com/vuid-com/tredly-host> or later
+Requires Tredly 0.10.6 <https://github.com/vuid-com/tredly-host> or later
 
-Checkout this repo and run `./install.sh [URL]` to install, where "URL" is the container url ("tredlyui.example.com" by default).
+Checkout this repo and run `./install.sh [URL]` to install, where "URL" is the container url ("tredlyui.example.com" by default). After that reboot Tredly Host or run `service tredlycc start`.
 
 Tredly Command Center will be created as a container and will be accessible over HTTPS protocol.
 

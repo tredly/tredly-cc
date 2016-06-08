@@ -1,0 +1,89 @@
+#!/usr/local/bin/bash
+
+# PROVIDE: tredly-cc
+# BEFORE:  LOGIN FILESYSTEMS
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="tredlycc"
+rcvar="tredlycc_enable"
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
+
+command="/usr/local/sbin/tredly"
+
+tredlycc_directory="/tredly/ptn/default/data/tredly-ui"
+tredlycc_container_name="tredly-ui"
+tredlycc_partition_name="default"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+restart_cmd="${name}_restart"
+status_cmd="${name}_status"
+extra_commands="status"
+
+load_rc_config $name
+: ${tredlycc}_enable:=no}
+
+tredlycc_start()
+{
+    # check if the container is created already
+    uuid=$( tredly list containers | grep -E "${tredlycc_container_name}" | awk '{ print $4 }')
+    if [[ -z "${uuid}" ]]; then
+        echo "Creating ${name} container"
+        # container not found so run replace
+        ${command} create container ${tredlycc_partition_name} --path="${tredlycc_directory}" --containerName="${tredlycc_container_name}"
+    else
+        echo "Starting ${name} container"
+        # container found so start it
+        ${command} start container ${uuid}
+    fi
+}
+
+tredlycc_stop()
+{
+    uuid=$( tredly list containers ${tredlycc_partition_name} | grep -E "${tredlycc_container_name}" | awk '{ print $4 }')
+    # only stop the container if we found a uuid
+    if [[ -n "${uuid}" ]]; then
+        ${command} stop container ${uuid}
+    else
+        echo "${name} container not found - is it running?"
+    fi
+}
+
+tredlycc_restart()
+{
+    tredlycc_stop
+    tredlycc_start
+}
+
+tredlycc_status()
+{
+    # get a container list initially to speed things up
+    container_list=$( tredly list containers ${tredlycc_partition_name} )
+
+    # extract data from the container list
+    uuid=$( echo "${container_list}" | grep -E "${tredlycc_container_name}" | awk '{ print $4 }')
+    partition=$( echo "${container_list}" | grep -E "${tredlycc_container_name}" | awk '{ print $1 }')
+    state=$( echo "${container_list}" | grep -E "${tredlycc_container_name}" | awk '{ print $6 }')
+    ip4=$( echo "${container_list}" | grep -E "${tredlycc_container_name}" | awk '{ print $5 }')
+
+    if [[ -z "${uuid}" ]]; then
+        echo "${name} is not running"
+    else
+        echo "----------------"
+        echo "${name} is $( echo ${state} | tr '[:lower:]' '[:upper:]' )"
+        echo "----------------"
+        echo "Partition: ${partition}"
+
+        # if the state is up then output more info
+        if [[ "${state}" == "up" ]]; then
+            echo "Name: ${tredlycc_container_name}"
+            echo "IP4: ${ip4}"
+        fi
+    fi
+}
+
+load_rc_config $name
+run_rc_command "$1"

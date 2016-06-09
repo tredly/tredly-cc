@@ -29,16 +29,18 @@ load_rc_config $name
 
 tredlycc_start()
 {
+    # get IP address
+    ip_addr=$(grep "^tredlyCC=" /usr/local/etc/tredly/static-ips.conf | cut -d'=' -f2)
     # check if the container is created already
     uuid=$( tredly list containers | grep -E "${tredlycc_container_name}" | awk '{ print $4 }')
     if [ -z "${uuid}" ]; then
         echo "Creating ${name} container"
         # container not found so run replace
-        ${command} create container ${tredlycc_partition_name} --path="${tredlycc_directory}" --containerName="${tredlycc_container_name}"
+        ${command} create container ${tredlycc_partition_name} --path="${tredlycc_directory}" --containerName="${tredlycc_container_name}" --ip4_addr="bridge1|${ip_addr}"
     else
         echo "Starting ${name} container"
         # container found so start it
-        ${command} start container ${uuid}
+        ${command} start container ${uuid} --ip4_addr="bridge1|${ip_addr}"
     fi
 }
 

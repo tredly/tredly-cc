@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # PROVIDE: tredly-cc
-# BEFORE:  
+# BEFORE:
 # KEYWORD: shutdown
 # REQUIRE: LOGIN tredly-api
 
@@ -14,8 +14,8 @@ PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
 
 command="/usr/local/sbin/tredly"
 
-tredlycc_directory="/tredly/ptn/default/data/tredly-ui"
-tredlycc_container_name="tredly-ui"
+tredlycc_directory="/tredly/ptn/default/data/tredly-cc"
+tredlycc_container_name="tredly-cc"
 tredlycc_partition_name="default"
 
 start_cmd="${name}_start"

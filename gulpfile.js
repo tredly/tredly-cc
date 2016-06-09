@@ -8,6 +8,7 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var concat = require('gulp-concat');
 var iconfont    = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
+var rename = require('gulp-rename');
 
 
 gulp.task('compass', function () {
@@ -36,8 +37,9 @@ gulp.task('copy-html', function () {
     .pipe(gulp.dest('./dist/public'));
 });
 
-gulp.task('copy-tredlyui', function () {
-  gulp.src('./tredlyui')
+gulp.task('copy-tredlycc', function () {
+  gulp.src('./tredlycc-container')
+    .pipe(rename('tredlycc'))
     .pipe(gulp.dest('./dist'));
 });
 
@@ -65,7 +67,7 @@ gulp.task('copy', [
     'copy-images',
     'copy-components',
     'copy-html',
-    'copy-tredlyui',
+    'copy-tredlycc',
     'copy-server',
     'copy-config',
     'copy-tredlyfile',

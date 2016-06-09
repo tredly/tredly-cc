@@ -238,7 +238,7 @@ onStart=npm install forever -g
 onStart=cd /usr/local/nodejs/www && npm install --production
 onStart=mv -f /usr/local/nodejs/www/tredlycc /etc/rc.d/
 onStart=chmod 555 /etc/rc.d/tredlycc
-onStart=echo tredlycc_enable=\\"YES\\" >> /etc/rc.conf
+onStart=sysrc tredlycc_enable=yes
 onStart=service tredlycc start
 
 # Commands run when container stops or is terminated (one per line, optional)

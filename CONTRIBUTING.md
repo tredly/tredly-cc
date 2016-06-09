@@ -4,7 +4,7 @@ We encourage contribution to this project and only ask you follow some simple ru
 
 ## Found a bug?
 
-Please lodge an issue at the GitHub issue tracker for this project -- [https://github.com/tredly/tredly-ui/issues](https://github.com/tredly/tredly-ui/issues)
+Please lodge an issue at the GitHub issue tracker for this project -- [https://github.com/tredly/tredly-cc/issues](https://github.com/tredly/tredly-cc/issues)
 
 Include details on the behaviour you are seeing, and steps needed to reproduce the problem. Also, include details on the hardware you are running Tredly on. This will help us to better understand the problem.
 

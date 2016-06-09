@@ -1,13 +1,13 @@
 {
-  "name": "tredly-ui",
-  "version": "0.1.0",
+  "name": "tredly-cc",
+  "version": "0.2.0",
   "description": "Tredly Command Center",
   "main": "server.js",
   "scripts": {
-    "start": "forever start --minUptime 0 --spinSleepTime 1000 -a -c 'node --harmony' --uid tredly-ui server.js",
+    "start": "forever start --minUptime 0 --spinSleepTime 1000 -a -c 'node --harmony' --uid tredly-cc server.js",
     "list": "forever list",
-    "stop": "forever stop tredly-ui",
-    "restart": "forever restart tredly-ui",
+    "stop": "forever stop tredly-cc",
+    "restart": "forever restart tredly-cc",
     "logs": "forever logs server.js",
     "build": "gulp"
   },
@@ -35,6 +35,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-iconfont": "^8.0.0",
     "gulp-iconfont-css": "^2.1.0",
-    "gulp-ng-html2js": "^0.2.2"
+    "gulp-ng-html2js": "^0.2.2",
+    "gulp-rename": "^1.2.2"
   }
 }

@@ -1,15 +1,15 @@
 # Tredly Command Center
 
-Version 0.1.0
-May 26 2016
+Version 0.2.0
+June 9 2016
 
 This is a software package to provide UI to Tredly Host. You can find out more information about Tredly at **<http://tredly.com>**
 
 ## Installation
 
-Requires Tredly 0.10.5 <https://github.com/vuid-com/tredly-host> or later
+Requires Tredly 0.10.6 <https://github.com/vuid-com/tredly-host> or later
 
-Checkout this repo and run `./install.sh [URL]` to install, where "URL" is the container url ("tredlyui.example.com" by default).
+Checkout this repo and run `./install.sh [URL]` to install, where "URL" is the container url ("cc.example.com" by default). After that reboot Tredly Host or run `service tredlycc start`.
 
 Tredly Command Center will be created as a container and will be accessible over HTTPS protocol.
 
@@ -39,7 +39,7 @@ Tredly Command Center is a web application. Supported browsers: Chrome, Firefox.
 
 ## Contributing
 
-We encourage you to contribute to Tredly. Please check out the [Contributing documentation](https://github.com/tredly/tredly-ui/blob/master/CONTRIBUTING.md) for guidelines about how to get involved.
+We encourage you to contribute to Tredly. Please check out the [Contributing documentation](https://github.com/tredly/tredly-cc/blob/master/CONTRIBUTING.md) for guidelines about how to get involved.
 
 ## License
 

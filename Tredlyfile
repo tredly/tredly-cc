@@ -16,7 +16,7 @@ versionNumber=0.10.0
 # Allowed values: text, integer, underscore (_) and dash (-)
 # This should contain your AppName and version number. The hostname of this
 # container will be equal to this value.
-containerName=tredlyui
+containerName=tredly-cc
 
 ## Container Group [optional]
 # Allowed values: text, integer, underscore (_) and dash (-)
@@ -147,8 +147,8 @@ maxRam=
 # ***** Below is a example of 2 different URLs *****
 
 # URL 1
-url1=tredlyui.example.com
-url1Cert=partition/tredly-ui/.ssl
+url1=cc.example.com
+url1Cert=partition/tredly-cc/.ssl
 url1Websocket=
 url1MaxFileSize=
 
@@ -236,12 +236,12 @@ fileFolderMapping=/ /usr/local/nodejs/www
 
 onStart=npm install forever -g
 onStart=cd /usr/local/nodejs/www && npm install --production
-onStart=mv -f /usr/local/nodejs/www/tredlyui /etc/rc.d/
-onStart=chmod 555 /etc/rc.d/tredlyui
-onStart=echo tredlyui_enable=\\"YES\\" >> /etc/rc.conf
-onStart=service tredlyui start
+onStart=mv -f /usr/local/nodejs/www/tredlycc /etc/rc.d/
+onStart=chmod 555 /etc/rc.d/tredlycc
+onStart=sysrc tredlycc_enable=yes
+onStart=service tredlycc start
 
 # Commands run when container stops or is terminated (one per line, optional)
-onStop=service tredlyui stop
+onStop=service tredlycc stop
 
 # ***** End Example Section *****

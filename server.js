@@ -25,7 +25,7 @@ process.on('unhandledRejection', function (reason, p) {
     process.exit(1);
 });
 
-var serverUrl = process.env.SERVER_URL || 'tredlyui.example.com';
+var serverUrl = process.env.SERVER_URL || 'cc.example.com';
 var ssl = process.env.SSL_FOLDER || path.resolve(__dirname, '.ssl');
 var port = process.env.SERVER_PORT || 8089;
 var isProd = (process.env.NODE_ENV === 'production');

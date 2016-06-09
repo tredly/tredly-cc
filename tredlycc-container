@@ -1,19 +1,19 @@
 #!/bin/sh
 
-# PROVIDE: tredly-ui
+# PROVIDE: tredly-cc
 # BEFORE:  LOGIN FILESYSTEMS
 # KEYWORD: shutdown
 
 . /etc/rc.subr
 
-name="tredlyui"
-rcvar="tredlyui_enable"
+name="tredlycc"
+rcvar="tredlycc_enable"
 
 PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
 
 command="/usr/local/bin/npm"
 
-tredlyui_directory="/usr/local/nodejs/www"
+tredlycc_directory="/usr/local/nodejs/www"
 
 start_cmd="${name}_start"
 stop_cmd="${name}_stop"
@@ -23,34 +23,34 @@ log_cmd="${name}_log"
 extra_commands="status log"
 
 load_rc_config $name
-: ${tredlyui}_enable:=no}
+: ${tredlycc}_enable:=no}
 
-tredlyui_start()
+tredlycc_start()
 {
-    cd ${tredlyui_directory}
+    cd ${tredlycc_directory}
     env NODE_ENV=production ${command} start
 }
 
-tredlyui_stop()
+tredlycc_stop()
 {
-    cd ${tredlyui_directory}
+    cd ${tredlycc_directory}
     ${command} stop
 }
 
-tredlyui_restart()
+tredlycc_restart()
 {
-    cd ${tredlyui_directory}
+    cd ${tredlycc_directory}
     ${command} restart
 }
 
-tredlyui_status()
+tredlycc_status()
 {
-    cd ${tredlyui_directory}
+    cd ${tredlycc_directory}
     ${command} run list
 }
-tredlyui_log()
+tredlycc_log()
 {
-    cd ${tredlyui_directory}
+    cd ${tredlycc_directory}
     ${command} run logs
 }
 

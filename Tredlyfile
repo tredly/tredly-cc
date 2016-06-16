@@ -1,7 +1,7 @@
 
 #############################
 #### Tredlyfile version number
-versionNumber=0.10.0
+versionNumber=1.0.0
 #############################
 
 # You can use variables within this file which should be interpreted by your

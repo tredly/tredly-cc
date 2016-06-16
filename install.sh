@@ -46,8 +46,8 @@ npm run build
 echo -e "\u001b[32m\u001b[1m### Moving installation folder... \u001b[22m\u001b[39m"
 rm -rf "${BINDIR}"
 mkdir -p "${BINDIR}/"
-mv -f ./tredlycc /etc/rc.d/
-chmod 555 /etc/rc.d/tredlycc
+mv -f ./tredlycc /usr/local/etc/rc.d/
+chmod 555 /usr/local/etc/rc.d/tredlycc
 echo tredlycc_enable=\"YES\" >> /etc/rc.conf
 mv -f ./dist/* "${BINDIR}/"
 rm -rf ./*

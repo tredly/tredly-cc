@@ -3,7 +3,7 @@
 # PROVIDE: tredly-cc
 # BEFORE:
 # KEYWORD: shutdown
-# REQUIRE: LOGIN tredly-api
+# REQUIRE: LOGIN tredly-api nginx
 
 . /etc/rc.subr
 
@@ -36,7 +36,7 @@ tredlycc_start()
     if [ -z "${uuid}" ]; then
         echo "Creating ${name} container"
         # container not found so run replace
-        ${command} create container ${tredlycc_partition_name} --path="${tredlycc_directory}" --containerName="${tredlycc_container_name}" --ip4_addr="bridge1|${ip_addr}"
+        ${command} create container ${tredlycc_partition_name} --location="${tredlycc_directory}" --containerName="${tredlycc_container_name}" --ip4_addr="bridge1|${ip_addr}"
     else
         echo "Starting ${name} container"
         # container found so start it

@@ -1,0 +1,72 @@
+---
+  container:
+    startOrder: 1
+    name: "tredly-cc"
+    resourceLimits:
+      maxHdd: "unlimited"
+      maxRam: "unlimited"
+      maxCpu: "unlimited"
+    proxy:
+      layer7Proxy:
+        -
+          url: "cc.example.com"
+          enableWebsocket: false
+          cert: "partition/tredly-cc/.ssl"
+          maxFileSize: "1m"
+          redirects: []
+      layer4Proxy: false
+    replicate: false
+    customDNS: []
+    technicalOptions: {}
+    compatibleWith: "1.0.0"
+    buildOptions:
+      publish: false
+    firewall:
+      allowPorts:
+        tcp:
+          in:
+            - 80
+            - 443
+          out:
+            - 80
+            - 443
+            - 65223
+        udp:
+          in: []
+          out:
+            - 53
+      ipv4Whitelist: []
+    operations:
+      onCreate:
+        -
+          type: "installPackage"
+          value: "node"
+        -
+          type: "installPackage"
+          value: "npm"
+        -
+          type: "fileFolderMapping"
+          source: "/"
+          target: "/usr/local/nodejs/www"
+        -
+          type: "exec"
+          value: "npm install forever -g"
+        -
+          type: "exec"
+          value: "cd /usr/local/nodejs/www && npm install --production"
+        -
+          type: "exec"
+          value: "mv -f /usr/local/nodejs/www/tredlycc /etc/rc.d/"
+        -
+          type: "exec"
+          value: "chmod 555 /etc/rc.d/tredlycc"
+        -
+          type: "exec"
+          value: "sysrc tredlycc_enable=yes"
+        -
+          type: "exec"
+          value: "service tredlycc start"
+      onStop:
+        -
+          type: "exec"
+          value: "service tredlycc stop"

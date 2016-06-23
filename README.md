@@ -1,13 +1,13 @@
 # Tredly Command Center
 
-Version 0.3.0
-June 16 2016
+Version 1.0.0
+June 23 2016
 
-This is a software package to provide UI to Tredly Host. You can find out more information about Tredly at **<http://tredly.com>**
+This is a software package to provide UI to a Tredly host. You can find out more information about Tredly at **<http://tredly.com>**
 
 ## Installation
 
-Requires Tredly 1.0.0-rc.1 <https://github.com/tredly/tredly> or later
+Requires Tredly 1.0.0 <https://github.com/tredly/tredly> or later
 
 Checkout this repo and run `./install.sh [URL]` to install, where "URL" is the container url ("cc.example.com" by default). After that reboot Tredly Host or run `service tredlycc start`.
 

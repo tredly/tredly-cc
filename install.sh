@@ -16,32 +16,32 @@ echo -e "\u001b[32m\u001b[1m################\u001b[22m\u001b[39m"
 echo -e "\u001b[32m\u001b[1m### Installing Tredly Command Center... \u001b[22m\u001b[39m"
 
 echo -e "\u001b[32m\u001b[1m### Installing Node.js... \u001b[22m\u001b[39m"
-pkg install -y node
+/usr/sbin/pkg install -y node
 
 echo -e "\u001b[32m\u001b[1m### Installing NPM... \u001b[22m\u001b[39m"
-pkg install -y npm
+/usr/sbin/pkg install -y npm
 
 echo -e "\u001b[32m\u001b[1m### Installing RubyGems... \u001b[22m\u001b[39m"
-pkg install -y ruby21-gems
+/usr/sbin/pkg install -y ruby21-gems
 
 echo -e "\u001b[32m\u001b[1m### Installing Compass... \u001b[22m\u001b[39m"
-gem update --system
-gem install compass
-gem install ceaser-easing
-gem install susy
-gem install breakpoint
+/usr/local/bin/gem update --system
+/usr/local/bin/gem install compass
+/usr/local/bin/gem install ceaser-easing
+/usr/local/bin/gem install susy
+/usr/local/bin/gem install breakpoint
 
 echo -e "\u001b[32m\u001b[1m### Installing Bower... \u001b[22m\u001b[39m"
-npm install bower -g
+/usr/local/bin/npm install bower -g
 
 echo -e "\u001b[32m\u001b[1m### Installing NPM dependencies... \u001b[22m\u001b[39m"
-npm install --only=development
+/usr/local/bin/npm install --only=development
 
 echo -e "\u001b[32m\u001b[1m### Installing Bower dependencies... \u001b[22m\u001b[39m"
-bower install --config.interactive=false --allow-root
+/usr/local/bin/bower install --config.interactive=false --allow-root
 
 echo -e "\u001b[32m\u001b[1m### Building UI... \u001b[22m\u001b[39m"
-npm run build
+/usr/local/bin/npm run build
 
 echo -e "\u001b[32m\u001b[1m### Moving installation folder... \u001b[22m\u001b[39m"
 rm -rf "${BINDIR}"

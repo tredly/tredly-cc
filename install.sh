@@ -50,6 +50,7 @@ mv -f ./tredlycc /usr/local/etc/rc.d/
 chmod 555 /usr/local/etc/rc.d/tredlycc
 echo tredlycc_enable=\"YES\" >> /etc/rc.conf
 mv -f ./dist/* "${BINDIR}/"
+mv ./tredly.yaml "${BINDIR}/"
 rm -rf ./*
 cd "${BINDIR}/"
 pwd
@@ -60,9 +61,10 @@ if [ -z "$1" ]
         echo -e "\u001b[32m\u001b[1m    Using default URL: cc.example.com \u001b[22m\u001b[39m"
     else
         echo -e "\u001b[32m\u001b[1m    Using custom URL: $1 \u001b[22m\u001b[39m"
-        sed -i -e "s,cc.example.com,$1,g" "${BINDIR}/Tredlyfile"
+        sed -i -e "s,cc.example.com,$1,g" "${BINDIR}/tredly.yaml"
         sed -i -e "s,cc.example.com,$1,g" "${BINDIR}/server.js"
 fi
+
 
 echo -e "\u001b[32m\u001b[1m### Generating SSL Certificates... \u001b[22m\u001b[39m"
 ./ssl.sh

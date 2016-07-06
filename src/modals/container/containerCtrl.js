@@ -70,7 +70,7 @@ function ModalContainerCtrl ($scope, $rootScope, $state, $window, $filter, $inte
 
         tredlyApi.post(vm.container.host.host,
             '/replace/container/' + vm.container.Partition + '/' + vm.container.UUID, {
-                path: vm.serverPath
+                location: vm.serverPath
             }, formatOutput)
             .then(refresh, refresh);
     }

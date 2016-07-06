@@ -48,7 +48,7 @@ app.use(function* (next) {
             var proxy = request({
                 url: url.resolve('https://' + (self.query.host || serverUrl) + ':65223', '/tredly/v1' + self.request.path) +
                     '?' + querystring.stringify({
-                        path: self.query.path,
+                        location: self.query.location,
                         partition: self.query.partition
                     }),
                 method: 'POST',

@@ -243,7 +243,7 @@ function tredlyApiProvider () {
                             data = data && data.data || data;
 
                             var list = data;
-                            if (!angular.isArray(list)) {
+                            if (list && !angular.isArray(list)) {
                                 list = [list];
                             }
 

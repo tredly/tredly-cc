@@ -25,10 +25,10 @@ function timeAgo () {
         var minutes = Math.floor(hoursPlus / 60);
         var seconds = hoursPlus % 60;
 
-        days = days > 9 ? days.toString() : '0' + days;
-        hours = hours > 9 ? hours.toString() : '0' + hours;
-        minutes = minutes > 9 ? minutes.toString() : '0' + minutes;
-        seconds = seconds > 9 ? seconds.toString() : '0' + seconds;
+        days = days > 9 || days < 0 ? days.toString() : '0' + days;
+        hours = hours > 9 || hours < 0 ? hours.toString() : '0' + hours;
+        minutes = minutes > 9 || minutes < 0 ? minutes.toString() : '0' + minutes;
+        seconds = seconds > 9 || seconds < 0 ? seconds.toString() : '0' + seconds;
 
         return days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
     };

@@ -22,7 +22,7 @@ echo -e "\u001b[32m\u001b[1m### Installing NPM... \u001b[22m\u001b[39m"
 /usr/sbin/pkg install -y npm
 
 echo -e "\u001b[32m\u001b[1m### Installing RubyGems... \u001b[22m\u001b[39m"
-/usr/sbin/pkg install -y ruby21-gems
+/usr/sbin/pkg install -y ruby22-gems
 
 echo -e "\u001b[32m\u001b[1m### Installing Compass... \u001b[22m\u001b[39m"
 /usr/local/bin/gem update --system
@@ -35,7 +35,7 @@ echo -e "\u001b[32m\u001b[1m### Installing Bower... \u001b[22m\u001b[39m"
 /usr/local/bin/npm install bower -g
 
 echo -e "\u001b[32m\u001b[1m### Installing NPM dependencies... \u001b[22m\u001b[39m"
-/usr/local/bin/npm install --only=development
+/usr/local/bin/npm install --global-style --only=development
 
 echo -e "\u001b[32m\u001b[1m### Installing Bower dependencies... \u001b[22m\u001b[39m"
 /usr/local/bin/bower install --config.interactive=false --allow-root

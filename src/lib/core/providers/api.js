@@ -241,6 +241,17 @@ function tredlyApiProvider () {
                         var data = response && response.data;
                         if (method === 'GET') {
                             data = data && data.data || data;
+
+                            var list = data;
+                            if (list && !angular.isArray(list)) {
+                                list = [list];
+                            }
+
+                            angular.forEach(list, function (obj) {
+                                if (obj.Partition === '-') {
+                                    obj.Partition = 'default';
+                                }
+                            });
                         }
                         return data;
                     });

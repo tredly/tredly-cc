@@ -151,7 +151,7 @@ function ModalCreateContainerCtrl ($scope, $rootScope, $state, $window, $filter,
 
     function refresh () {
         if (vm.container.mode.name !== 'upload') {
-            $state.go('app.containers', {host: vm.container.Host.host, partition: vm.container.Partition.Partition});
+            $state.go('app.containers', {filter: true, host: vm.container.Host.host, partition: vm.container.Partition.Partition});
             $rootScope.$broadcast('refreshContent');
         }
     }

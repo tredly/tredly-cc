@@ -131,7 +131,7 @@ function ModalCreateContainerCtrl ($scope, $rootScope, $state, $window, $filter,
     function uploadPackage () {
         var url = vm.container.mode.name === 'push' ? '/push/container' : '/push/files';
         url += '/?' + [
-            'path=' + encodeURIComponent(vm.container.path || ''),
+            'location=' + encodeURIComponent(vm.container.location || ''),
             'partition=' + encodeURIComponent(vm.container.Partition.Partition || ''),
             'host=' + encodeURIComponent(vm.container.Host.host || ''),
             'token=' + encodeURIComponent(vm.container.Host.token || '')
@@ -145,7 +145,7 @@ function ModalCreateContainerCtrl ($scope, $rootScope, $state, $window, $filter,
     };
 
     function validate () {
-        return vm.saving || !vm.container.Partition || !vm.container.Host || !vm.container.path ||
+        return vm.saving || !vm.container.Partition || !vm.container.Host || !vm.container.location ||
             (vm.container.mode.name !== 'create' && !vm.file);
     }
 
@@ -165,8 +165,8 @@ function ModalCreateContainerCtrl ($scope, $rootScope, $state, $window, $filter,
 
         var parameters = {};
 
-        if (vm.container.path) {
-            parameters.path = vm.container.path;
+        if (vm.container.location) {
+            parameters.location = vm.container.location;
         }
 
         if (vm.container.mode.name === 'create') {

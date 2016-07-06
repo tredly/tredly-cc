@@ -54,7 +54,7 @@ gulp.task('copy-config', function () {
 });
 
 gulp.task('copy-tredlyfile', function () {
-  gulp.src('./Tredlyfile')
+  gulp.src('./tredly.yaml')
     .pipe(gulp.dest('./dist'));
 });
 

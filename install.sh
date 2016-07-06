@@ -22,7 +22,7 @@ echo -e "\u001b[32m\u001b[1m### Installing NPM... \u001b[22m\u001b[39m"
 /usr/sbin/pkg install -y npm
 
 echo -e "\u001b[32m\u001b[1m### Installing RubyGems... \u001b[22m\u001b[39m"
-/usr/sbin/pkg install -y ruby21-gems
+/usr/sbin/pkg install -y ruby22-gems
 
 echo -e "\u001b[32m\u001b[1m### Installing Compass... \u001b[22m\u001b[39m"
 /usr/local/bin/gem update --system

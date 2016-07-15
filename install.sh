@@ -16,10 +16,10 @@ echo -e "\u001b[32m\u001b[1m################\u001b[22m\u001b[39m"
 echo -e "\u001b[32m\u001b[1m### Installing Tredly Command Center... \u001b[22m\u001b[39m"
 
 echo -e "\u001b[32m\u001b[1m### Installing Node.js... \u001b[22m\u001b[39m"
-/usr/sbin/pkg install -y node
+/usr/sbin/pkg install -y node4
 
 echo -e "\u001b[32m\u001b[1m### Installing NPM... \u001b[22m\u001b[39m"
-/usr/sbin/pkg install -y npm
+/usr/sbin/pkg install -y npm2
 
 echo -e "\u001b[32m\u001b[1m### Installing RubyGems... \u001b[22m\u001b[39m"
 /usr/sbin/pkg install -y ruby22-gems

@@ -1,7 +1,7 @@
 # Tredly Command Center
 
-Version 1.0.1
-July 7 2016
+Version 1.0.2
+July 15 2016
 
 This is a software package to provide UI to a Tredly host. You can find out more information about Tredly at **<http://tredly.com>**
 

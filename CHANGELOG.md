@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [1.0.2] - 2016-07-15
+#### Changed
+- Switch to NodeJS v4
+
 ## [1.0.1] - 2016-07-07
 #### Fixed
 - Fixed issue with lodash module not applying correctly
@@ -37,6 +42,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 #### Added
 - Initial release of Tredly Command Center
 
+[1.0.2]: https://github.com/tredly/tredly-cc/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/tredly/tredly-cc/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/tredly/tredly-cc/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/tredly/tredly-cc/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/tredly/tredly-cc/compare/v0.1.0...v0.2.0

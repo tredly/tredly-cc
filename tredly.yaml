@@ -40,10 +40,10 @@
       onCreate:
         -
           type: "installPackage"
-          value: "node"
+          value: "node4"
         -
           type: "installPackage"
-          value: "npm"
+          value: "npm2"
         -
           type: "fileFolderMapping"
           source: "/"
